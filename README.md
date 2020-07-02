@@ -1,2 +1,4 @@
 # deep-reinforcement-learning-continuous-control
-Udacity drlnd project2
+The Project is for Udacity Deep Reinforcement learning nd. 
+### Introduction
+
