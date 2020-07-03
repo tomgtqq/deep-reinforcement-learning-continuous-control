@@ -13,13 +13,15 @@ Agents must get an average score of +30 (over 100 consecutive episodes, and over
 
 #### Real World
 Having multiple copies of the same agent sharing experience can accelerate learning.
-<center><img src="assets/robotic_arms.gif" style="width:200px;height:100px;"></center>
-
+<div align="center">
+<img src="assets/robotic_arms.gif" height="100" width="200">
+</div>
 #### Simulation Environment
 Unity Machine Learning Agents (ML-Agents) is an open-source Unity plugin that enables simulations to serve as environments for training intelligent agents.
 For this project, work with the [Reacher](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Learning-Environment-Examples.md#reacher) environment.
-<center><img src="assets/result.gif" style="width:200px;height:100px;"></center>
-
+<div align="center">
+<img src="assets/result.gif" height="100" width="200">
+</div>
 ### Getting Started
 The Project is for Udacity Deep Reinforcement learning nd. 
 
