@@ -6,8 +6,13 @@ The report is for Udacity Deep Reinforcement learning course to train an agent t
 
 ## Algorithm
 I implement the Deep Deterministic Policy Gradients (DDPG) algorithm following [Continuous control with deep reinforcement learning](https://arxiv.org/pdf/1509.02971.pdf)
-<center><img src="assets/DDPG.png" style="width:600px;height:350px;"></center>
-<caption><center><u> **Figure 1** </u>: **Pseudocode**<br>  </center></caption>
+
+<div align="center">
+<img src="assets/DDPG.png" height="350" width="600">
+</div>
+<div align="center">
+<u> **Figure 1** </u>: **Pseudocode**<br>  
+</div>
 
 The neural network model as 'actor' and 'critic'. The actor here is used to approximate the optimal policy deterministically. The actor is basically learning the argmax_a Q(s,a) which is best action. The critic learns to evluate the optimal action value function by using the actors best believed. 
 ```python
@@ -25,8 +30,13 @@ self.critic_optimizer.zero_grad()
 critic_loss.backward()
 self.critic_optimizer.step()
 ```
-<center><img src="assets/update_critic.gif" style="width:600px;height:350px;"></center>
-<caption><center><u> **Figure 2** </u>: **Update critic**<br>  </center></caption>
+
+<div align="center">
+<img src="assets/update_critic.gif" height="350" width="600">
+</div>
+<div align="center">
+<u> **Figure 2** </u>: **Update Critic**<br>  
+</div>
 
 It is a kind of an actor-critic method. it could be seen as approximate DQN instead of an actual actor-critic. The reason for this that the critic in DDPG is used to approximate the maximizer over the Q-Value of the next state and not as a learned baseline when updating the actor-local.  I used the DDPG-Bipedal project as the baseline to implement actor-critic method.
 
@@ -40,16 +50,27 @@ self.actor_optimizer.zero_grad()
 actor_loss.backward()
 self.actor_optimizer.step()
 ```
-<center><img src="assets/update_actor.gif" style="width:600px;height:350px;"></center>
-<caption><center><u> **Figure 3** </u>: **Update actor**<br>  </center></caption>
+
+<div align="center">
+<img src="assets/update_actor.gif"  height="350" width="600">
+</div>
+<div align="center">
+<u> **Figure 2** </u>: **Update Actor**<br>  
+</div>
 
 ## Neural network model
 
 I changed  "WEIGHT_DECAY = 0 ", it is to prevent overfitting and setting weights too big. Then I structured the neural network model. Used two computers and a AWS to find the best network config for this task. The [Batch Normalization](https://arxiv.org/pdf/1502.03167.pdf) technology could accelerate Deep Network Training. So I defined "nn.BatchNorm1d" between each layer. Other [material](https://kratzert.github.io/2016/02/12/understanding-the-gradient-flow-through-the-batch-normalization-layer.html) That I referred to. 
 
 When I structured the model, I referred to some methods of supervised learning to explore the setting.
-<center><img src="assets/train_supervise_learning.png" style="width:600px;height:350px;"></center>
-<caption><center><u> **Figure 4** </u>: **Supervise learning**<br>  </center></caption>
+
+<div align="center">
+<img src="assets/train_supervise_learning.png"   height="350" width="600">
+</div>
+<div align="center">
+<u> **Figure 4** </u>: **Supervise learning**<br>
+</div>
+
 
 I trained the model with different config on three machines. So Test data is marked as coming from AWS, Windows, Mac.
 
@@ -62,7 +83,7 @@ I trained the model with different config on three machines. So Test data is mar
 |  Actor     |  512             | 512         |  512      | 4            |
 |  Critic    |  512             | 512         |  512      | 1            |
 
-<img src="assets/test_data/AWS_1.png" style="width:400px;height:200px;">
+<img src="assets/test_data/AWS_1.png">
 
 * 2 The model converges very slowly too.  So I would try to reduce the number of layers.
 
@@ -71,7 +92,7 @@ I trained the model with different config on three machines. So Test data is mar
 |  Actor     |  256             | 256         |  256      | 4            |
 |  Critic    |  256             | 256         |  256      | 1            |
 
-<img src="assets/test_data/AWS_2.png" style="width:400px;height:200px;">
+<img src="assets/test_data/AWS_2.png">
 
 * 3 Overfitting is better than underfitting. So I config `fc1_units=1024`.The model's performance is much better than before, but it still converges slowly. I would reduce the number of units.
 
@@ -80,7 +101,7 @@ I trained the model with different config on three machines. So Test data is mar
 |  Actor     |  1024             | 512         |  -      | 4            |
 |  Critic    |  1024             | 512         |  -      | 1            |
 
-<img src="assets/test_data/AWS_3.png" style="width:400px;height:200px;">
+<img src="assets/test_data/AWS_3.png">
 
 * 4 The model initially converged faster than it'd done before. When the episode exceeded 20, it converged very slowly. At the same time, I reduced the units on the Mac.
 
@@ -89,7 +110,7 @@ I trained the model with different config on three machines. So Test data is mar
 |  Actor     |  512             | 512         |  -      | 4            |
 |  Critic    |  512             | 512         |  -      | 1            |
 
-<img src="assets/test_data/AWS_4.png" style="width:400px;height:200px;">
+<img src="assets/test_data/AWS_4.png">
 
 #### From Mac :
 * 1 The performance was worse than before, I thought the model was underfitting.
@@ -98,7 +119,7 @@ I trained the model with different config on three machines. So Test data is mar
 |------------|------------------|-------------|-----------|--------------|
 |  Actor     |  256             | 256         |  -      | 4            |
 |  Critic    |  256             | 256         |  -      | 1            |
-<img src="assets/test_data/MAC_1.png" style="width:400px;height:200px;">
+<img src="assets/test_data/MAC_1.png">
 
 #### From Windows :
 
@@ -113,7 +134,7 @@ In the knowledge forum, I noticed that some students mentioned that this practic
 |  Actor     |  512             | 512         |  1.0 , 1e-6     | 4            |
 |  Critic    |  512             | 512         |  1.0 , 1e-6      | 1            |
 
-<img src="assets/test_data/WIN_1.png" style="width:400px;height:200px;">
+<img src="assets/test_data/WIN_1.png">
 
 ## Results
 
@@ -138,11 +159,19 @@ Model Structure
 |  Actor     |  512             | 512         |  1.0 , 1e-6     | 4            |
 |  Critic    |  512             | 512         |  1.0 , 1e-6      | 1            |
 
-<center><img src="assets/result.png" style="width:400px;height:200px;"></center>
-<caption><center><u> **Figure 5** </u>: **Result**<br></center></caption>
+<div align="center">
+<img src="assets/result.png"   height="200" width="400">
+</div>
+<div align="center">
+<u> **Figure 5** </u>: **Result**<br>
+</div>
 
-<center><img src="assets/result.gif" style="width:400px;height:200px;"></center>
-<caption><center><u> **Figure 6** </u>: **Result**<br></center></caption>
+<div align="center">
+<img src="assets/result.gif"   height="200" width="400">
+</div>
+<div align="center">
+<u> **Figure 6** </u>: **Watch smart the agent**<br>
+</div>
 
 
 ## Conclusion
