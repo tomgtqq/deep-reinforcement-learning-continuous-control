@@ -159,12 +159,11 @@ Model Structure
 |  Actor     |  512             | 512         |  1.0 , 1e-6     | 4            |
 |  Critic    |  512             | 512         |  1.0 , 1e-6      | 1            |
 
-<div align="center">
-<img src="assets/result.png"   height="200" width="400">
-</div>
-<div align="center">
-<u> **Figure 5** </u>: **Result**<br>
-</div>
+
+<img src="assets/result.png">
+
+## Conclusion
+The number of FC units will affect the performance of agents. The  epsilon and batch-normalization technology is very helpful for training model.
 
 <div align="center">
 <img src="assets/result.gif"   height="200" width="400">
@@ -172,10 +171,6 @@ Model Structure
 <div align="center">
 <u> **Figure 6** </u>: **Watch smart the agent**<br>
 </div>
-
-
-## Conclusion
-The number of FC units will affect the performance of agents. The  epsilon and batch-normalization technology is very helpful for training model.
 
 ## Future enhancements
 - Implement "(Optional) Challenge: Crawl". 
