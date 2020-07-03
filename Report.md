@@ -98,6 +98,7 @@ I trained the model with different config on three machines. So Test data is mar
 |------------|------------------|-------------|-----------|--------------|
 |  Actor     |  256             | 256         |  -      | 4            |
 |  Critic    |  256             | 256         |  -      | 1            |
+<img src="assets/test_data/MAC_1.png" style="width:400px;height:200px;">
 
 #### From Windows :
 
@@ -112,7 +113,7 @@ In the knowledge forum, I noticed that some students mentioned that this practic
 |  Actor     |  512             | 512         |  1.0 , 1e-6     | 4            |
 |  Critic    |  512             | 512         |  1.0 , 1e-6      | 1            |
 
-
+<img src="assets/test_data/WIN_1.png" style="width:400px;height:200px;">
 
 ## Results
 
@@ -137,8 +138,11 @@ Model Structure
 |  Actor     |  512             | 512         |  1.0 , 1e-6     | 4            |
 |  Critic    |  512             | 512         |  1.0 , 1e-6      | 1            |
 
-<center><img src="assets/result.gif" style="width:400px;height:200px;"></center>
+<center><img src="assets/result.png" style="width:400px;height:200px;"></center>
 <caption><center><u> **Figure 5** </u>: **Result**<br></center></caption>
+
+<center><img src="assets/result.gif" style="width:400px;height:200px;"></center>
+<caption><center><u> **Figure 6** </u>: **Result**<br></center></caption>
 
 
 ## Conclusion
